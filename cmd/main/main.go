@@ -19,9 +19,9 @@ package main
 import (
 	"os"
 
+	"github.com/paketo-buildpacks/jattach/jattach"
 	"github.com/paketo-buildpacks/libpak"
 	"github.com/paketo-buildpacks/libpak/bard"
-	"github.com/pivotal-david-osullivan/jattach/jattach"
 )
 
 func main() {

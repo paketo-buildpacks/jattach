@@ -1,4 +1,4 @@
-module github.com/pivotal-david-osullivan/jattach
+module github.com/paketo-buildpacks/jattach
 
 go 1.17
 

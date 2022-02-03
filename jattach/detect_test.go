@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/pivotal-david-osullivan/jattach/jattach"
+	"github.com/paketo-buildpacks/jattach/jattach"
 
 	"github.com/buildpacks/libcnb"
 	. "github.com/onsi/gomega"

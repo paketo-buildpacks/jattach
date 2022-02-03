@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-GOOS="linux" go build -ldflags='-s -w' -o bin/main github.com/pivotal-david-osullivan/jattach/cmd/main
+GOOS="linux" go build -ldflags='-s -w' -o bin/main github.com/paketo-buildpacks/jattach/cmd/main
 
 if [ "${STRIP:-false}" != "false" ]; then
   strip bin/main
