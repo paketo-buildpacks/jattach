@@ -1,6 +1,6 @@
 # `gcr.io/paketo-buildpacks/jattach`
 
-The Paketo JAttach Buildpack is a Cloud Native Buildpack that provides the [JAttach binary](https://github.com/apangin/jattach) to send commands to a remote JVM via Dynamic Attach mechanism.
+The Paketo Buildpack for JAttach is a Cloud Native Buildpack that provides the [JAttach binary](https://github.com/apangin/jattach) to send commands to a remote JVM via Dynamic Attach mechanism.
 
 ## Behavior
 
