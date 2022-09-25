@@ -38,14 +38,14 @@ api = "0.7"
     name = "BP_JATTACH_ENABLED"
 
   [[metadata.dependencies]]
-    cpes = ["cpe:2.3:a:apangin:jattach:2.0.0:*:*:*:*:*:*:*"]
+    cpes = ["cpe:2.3:a:apangin:jattach:2.1.0:*:*:*:*:*:*:*"]
     id = "jattach"
     name = "JAttach"
-    purl = "pkg:generic/jattach@2.0.0?arch=amd64"
-    sha256 = "989dc53279c7fb3ec399dbff1692647439286e5a4339c2849fd4323e998af7f8"
+    purl = "pkg:generic/jattach@2.1.0?arch=amd64"
+    sha256 = "07885fdc782e02e7302c6d190f54c3930afa10a38140365adf54076ec1086a8e"
     stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
-    uri = "https://github.com/apangin/jattach/releases/download/v2.0/jattach"
-    version = "2.0.0"
+    uri = "https://github.com/apangin/jattach/releases/download/v2.1/jattach"
+    version = "2.1.0"
 
     [[metadata.dependencies.licenses]]
       type = "Apache-2.0"
