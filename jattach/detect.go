@@ -18,7 +18,9 @@ package jattach
 
 import (
 	"github.com/buildpacks/libcnb"
+	"github.com/paketo-buildpacks/libpak/bard"
 	"github.com/paketo-buildpacks/libpak/sherpa"
+	"os"
 )
 
 const (
@@ -30,7 +32,9 @@ type Detect struct {
 
 func (d Detect) Detect(context libcnb.DetectContext) (libcnb.DetectResult, error) {
 
+	l := bard.NewLogger(os.Stdout)
 	if val := sherpa.ResolveBool("BP_JATTACH_ENABLED"); !val {
+		l.Logger.Info("SKIPPED: BP_JATTACH_ENABLED was not set to true")
 		return libcnb.DetectResult{Pass: false}, nil
 	}
 
