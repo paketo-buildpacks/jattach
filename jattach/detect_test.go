@@ -59,4 +59,13 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 			},
 		}))
 	})
+
+	it("BP_JATTACH_ENABLED was not set", func() {
+		Expect(os.Unsetenv("BP_JATTACH_ENABLED")).To(Succeed())
+
+		Expect(detect.Detect(ctx)).To(Equal(libcnb.DetectResult{
+			Pass:  false,
+			Plans: nil,
+		}))
+	})
 }
