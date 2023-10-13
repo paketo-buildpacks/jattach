@@ -43,6 +43,8 @@ api = "0.7"
     name = "JAttach"
     purl = "pkg:generic/jattach@2.1.0?arch=amd64"
     sha256 = "07885fdc782e02e7302c6d190f54c3930afa10a38140365adf54076ec1086a8e"
+    source = "https://github.com/apangin/jattach/archive/refs/tags/v2.1.tar.gz"
+    source-sha256 = "bdb89f1769a9ecb30e121d6223213c04a697a0bed3429dca323a015813dbcdd8"
     stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
     uri = "https://github.com/jattach/jattach/releases/download/v2.1/jattach"
     version = "2.1.0"
