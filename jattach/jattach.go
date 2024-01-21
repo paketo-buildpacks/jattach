@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 the original author or authors.
+ * Copyright 2018-2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/paketo-buildpacks/libpak/sherpa"
+	"github.com/paketo-buildpacks/libpak/crush"
 
 	"github.com/buildpacks/libcnb"
 	"github.com/paketo-buildpacks/libpak"
@@ -44,7 +44,6 @@ func (j JAttach) Contribute(layer libcnb.Layer) (libcnb.Layer, error) {
 	j.LayerContributor.Logger = j.Logger
 
 	return j.LayerContributor.Contribute(layer, func(artifact *os.File) (libcnb.Layer, error) {
-
 		binDir := filepath.Join(layer.Path, "bin")
 
 		if err := os.MkdirAll(binDir, 0755); err != nil {
@@ -52,11 +51,11 @@ func (j JAttach) Contribute(layer libcnb.Layer) (libcnb.Layer, error) {
 		}
 		j.Logger.Bodyf("Copying to %s", binDir)
 
-		file := filepath.Join(binDir, filepath.Base(artifact.Name()))
-		if err := sherpa.CopyFile(artifact, file); err != nil {
-			return libcnb.Layer{}, fmt.Errorf("unable to copy %s to %s\n%w", artifact.Name(), file, err)
+		if err := crush.Extract(artifact, binDir, 0); err != nil {
+			return libcnb.Layer{}, fmt.Errorf("unable to expand jattach\n%w", err)
 		}
 
+		file := filepath.Join(binDir, "jattach")
 		if err := os.Chmod(file, 0755); err != nil {
 			return libcnb.Layer{}, fmt.Errorf("unable to chmod %s\n%w", file, err)
 		}

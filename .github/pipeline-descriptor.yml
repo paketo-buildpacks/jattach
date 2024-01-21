@@ -24,7 +24,18 @@ dependencies:
   id:              jattach
   uses:            docker://ghcr.io/paketo-buildpacks/actions/github-release-dependency:main
   with:
-    glob:       jattach
+    glob:       jattach-linux-x64.tgz
+    owner:      apangin
+    repository: jattach
+    tag_filter: v([\d.]*)
+    token:      ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
+
+# ARM64
+- name:            jattach ARM64
+  id:              jattach
+  uses:            docker://ghcr.io/paketo-buildpacks/actions/github-release-dependency:main
+  with:
+    glob:       jattach-linux-arm64.tgz
     owner:      apangin
     repository: jattach
     tag_filter: v([\d.]*)

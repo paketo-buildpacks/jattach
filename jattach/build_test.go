@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2020 the original author or authors.
+ * Copyright 2018-2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@
 package jattach_test
 
 import (
-	"io/ioutil"
-	"os"
 	"testing"
 
 	"github.com/paketo-buildpacks/jattach/jattach"
@@ -39,8 +37,10 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 	it.Before(func() {
 		var err error
 
-		ctx.Application.Path, err = ioutil.TempDir("", "build")
+		ctx.Application.Path = t.TempDir()
 		Expect(err).NotTo(HaveOccurred())
+
+		t.Setenv("BP_ARCH", "amd64")
 
 		ctx.Plan.Entries = append(ctx.Plan.Entries, libcnb.BuildpackPlanEntry{Name: "jattach"})
 		ctx.Buildpack.Metadata = map[string]interface{}{
@@ -49,40 +49,15 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 					"id":      "jattach",
 					"version": "1.0.0",
 					"stacks":  []interface{}{"test-stack-id"},
+					"cpes":    []string{"cpe:2.3:a:jattach:jattach:1.0.0:*:*:*:*:*:*:*"},
+					"purl":    "pkg:generic/jattach@1.0.0?arch=amd64",
 				},
 			},
 		}
 		ctx.StackID = "test-stack-id"
 	})
 
-	it.After(func() {
-		Expect(os.RemoveAll(ctx.Application.Path)).To(Succeed())
-	})
-
-	it("contributes JAttach for API <= 0.6", func() {
-		ctx.Buildpack.API = "0.6"
-
-		result, err := build.Build(ctx)
-		Expect(err).NotTo(HaveOccurred())
-
-		Expect(result.Layers).To(HaveLen(1))
-		Expect(result.Layers[0].Name()).To(Equal("jattach"))
-
-		Expect(result.BOM.Entries).To(HaveLen(1))
-		Expect(result.BOM.Entries[0].Name).To(Equal("jattach"))
-	})
-	it("contributes JAttach for API 0.7+", func() {
-		ctx.Buildpack.Metadata = map[string]interface{}{
-			"dependencies": []map[string]interface{}{
-				{
-					"id":      "jattach",
-					"version": "1.0.0",
-					"stacks":  []interface{}{"test-stack-id"},
-					"cpes":    []string{"cpe:2.3:a:jattach:jattach:1.17.1:*:*:*:*:*:*:*"},
-					"purl":    "pkg:generic/jattach@1.0.0?arch=amd64",
-				},
-			},
-		}
+	it("contributes JAttach", func() {
 		result, err := build.Build(ctx)
 		Expect(err).NotTo(HaveOccurred())
 
