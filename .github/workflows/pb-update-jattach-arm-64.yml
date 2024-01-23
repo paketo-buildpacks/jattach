@@ -1,4 +1,4 @@
-name: Update jattach
+name: Update jattach ARM64
 "on":
     schedule:
         - cron: 0 5 * * 1-5
@@ -44,7 +44,7 @@ jobs:
             - id: dependency
               uses: docker://ghcr.io/paketo-buildpacks/actions/github-release-dependency:main
               with:
-                glob: jattach-linux-x64.tgz
+                glob: jattach-linux-arm64.tgz
                 owner: apangin
                 repository: jattach
                 tag_filter: v([\d.]*)
@@ -108,14 +108,14 @@ jobs:
             - uses: peter-evans/create-pull-request@v5
               with:
                 author: ${{ secrets.JAVA_GITHUB_USERNAME }} <${{ secrets.JAVA_GITHUB_USERNAME }}@users.noreply.github.com>
-                body: Bumps `jattach` from `${{ steps.buildpack.outputs.old-version }}` to `${{ steps.buildpack.outputs.new-version }}`.
-                branch: update/buildpack/jattach
+                body: Bumps `jattach ARM64` from `${{ steps.buildpack.outputs.old-version }}` to `${{ steps.buildpack.outputs.new-version }}`.
+                branch: update/buildpack/jattach-arm-64
                 commit-message: |-
-                    Bump jattach from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}
+                    Bump jattach ARM64 from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}
 
-                    Bumps jattach from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}.
+                    Bumps jattach ARM64 from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}.
                 delete-branch: true
                 labels: ${{ steps.buildpack.outputs.version-label }}, type:dependency-upgrade
                 signoff: true
-                title: Bump jattach from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}
+                title: Bump jattach ARM64 from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}
                 token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
