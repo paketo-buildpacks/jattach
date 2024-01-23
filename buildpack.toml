@@ -42,11 +42,11 @@ api = "0.7"
     id = "jattach"
     name = "JAttach"
     purl = "pkg:generic/jattach@2.2.0?arch=amd64"
-    sha256 = "acd9e17f15749306be843df392063893e97bfecc5260eef73ee98f06e5cfe02f"
+    sha256 = "288ae5ed87ee7fe0e608c06db5a23a096a6217c9878ede53c4e33710bdcaab51"
     source = "https://github.com/apangin/jattach/archive/refs/tags/v2.2.tar.gz"
     source-sha256 = "dc29ebb4fe795a026698fd77d04072cfb39295276a541cfc5e77d20b1509a1cf"
     stacks = ["*"]
-    uri = "https://github.com/jattach/jattach/releases/download/v2.2/jattach-linux-x64.tgz"
+    uri = "https://github.com/jattach/jattach/releases/download/v2.2/jattach-linux-arm64.tgz"
     version = "2.2.0"
 
     [[metadata.dependencies.licenses]]
