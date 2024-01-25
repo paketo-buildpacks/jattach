@@ -40,3 +40,4 @@ dependencies:
     repository: jattach
     tag_filter: v([\d.]*)
     token:      ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
+    arch:       arm64
