@@ -33,8 +33,8 @@ type JAttach struct {
 	Logger           bard.Logger
 }
 
-func NewJAttach(dependency libpak.BuildpackDependency, cache libpak.DependencyCache) (JAttach, libcnb.BOMEntry) {
-	contributor, entry := libpak.NewDependencyLayer(dependency, cache, libcnb.LayerTypes{
+func NewJAttach(dependency libpak.BuildpackDependency, cache libpak.DependencyCache) (JAttach, libcnb.BOMEntry) { //nolint:staticcheck // hold off on the BOM migration for now
+	contributor, entry := libpak.NewDependencyLayer(dependency, cache, libcnb.LayerTypes{ //nolint:staticcheck // hold off on the BOM migration for now
 		Launch: true,
 	})
 	return JAttach{LayerContributor: contributor}, entry
