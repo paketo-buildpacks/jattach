@@ -56,7 +56,7 @@ func (b Build) Build(context libcnb.BuildContext) (libcnb.BuildResult, error) {
 		watch, be := NewJAttach(jAttachDependency, dc)
 
 		result.Layers = append(result.Layers, watch)
-		result.BOM.Entries = append(result.BOM.Entries, be)
+		result.BOM.Entries = append(result.BOM.Entries, be) //nolint:staticcheck // hold off on the BOM migration for now
 	}
 
 	return result, nil

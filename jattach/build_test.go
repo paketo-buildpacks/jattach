@@ -64,6 +64,6 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		Expect(result.Layers).To(HaveLen(1))
 		Expect(result.Layers[0].Name()).To(Equal("jattach"))
 
-		Expect(result.BOM.Entries).To(HaveLen(1))
+		Expect(result.BOM.Entries).To(HaveLen(1)) //nolint:staticcheck // hold off on the BOM migration for now
 	})
 }
